@@ -3,7 +3,7 @@ stages:
 
 deploy_live:
   image:
-    name: kubectl:latest
+    name: dwdraju/gke-kubectl-docker
     entrypoint: [""]
   stage: deploy_live
   only:
