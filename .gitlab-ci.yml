@@ -19,7 +19,7 @@ image_build:
   script:
 #    - docker pull $SERVER_IMAGE:latest || true
     - docker build -t book-service-server .
-    - docker tag hovi-server $SERVER_IMAGE:prod
+    - docker tag book-service-server $SERVER_IMAGE:prod
     - docker push $SERVER_IMAGE:prod
 
 deploy_live:
