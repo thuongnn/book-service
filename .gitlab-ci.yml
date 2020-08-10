@@ -1,8 +1,3 @@
-services:
-  - name: docker:dind
-    entrypoint: ["env", "-u", "DOCKER_HOST"]
-    command: ["dockerd-entrypoint.sh"]
-
 stages:
   - image_build
   - deploy_live
@@ -10,9 +5,7 @@ stages:
 variables:
   # use the overlay storage driver
   # https://docs.gitlab.com/ce/ci/docker/using_docker_build.html#using-the-overlayfs-driver
-  DOCKER_HOST: tcp://docker:2375/
   DOCKER_DRIVER: overlay
-  DOCKER_TLS_CERTDIR: ""
   SERVER_IMAGE: registry.gitlab.com/be-devops-tranning/book-service/server
 
 image_build:
