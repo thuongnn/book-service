@@ -1,0 +1,36 @@
+version: '2.3'
+services:
+  postgresql:
+    image: postgres
+    container_name: book-db
+    restart: always
+    env_file:
+      - ./config/db/env
+    cap_drop:
+      - ALL
+    ports:
+      - 5432:5432
+    cap_add:
+      - ALL
+    volumes:
+      - ./config/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      book-service:
+  book-api:
+    container_name: book-api
+    build: .
+    env_file:
+      - config/app/.env
+    restart: always
+    ports:
+    - 8080:8080
+    cap_drop:
+      - ALL
+    cap_add:
+      - ALL
+    networks:
+      book-service:
+    depends_on:
+      - postgresql
+networks:
+  book-service:
