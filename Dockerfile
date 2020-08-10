@@ -1,5 +1,6 @@
 # build book application first
-FROM golang:alpine
+FROM golang:alpine AS build
+
 ENV GO111MODULE=on \
     CGO_ENABLED=0 \
     GOOS=linux \
@@ -7,11 +8,10 @@ ENV GO111MODULE=on \
 
 WORKDIR /build
 
-COPY go.mod .
-COPY go.sum .
+COPY . .
+
 RUN go mod download
 
-COPY . .
 RUN go build -o book-service .
 
 # running application
@@ -20,8 +20,9 @@ RUN apk --no-cache add ca-certificates
 
 WORKDIR /root/
 
-COPY --from=0 /build/book-service .
-COPY config/app/.env .
-COPY config/app/app.conf .
+COPY --from=build /build/book-service .
+
+COPY ./config/app/.env .
+COPY ./config/app/app.conf .
 
 CMD ["./book-service"]

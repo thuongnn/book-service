@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: book-service
+  name: book-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: book-service
+      tier: server
+  template:
+    metadata:
+      labels:
+        run: book-service
+        tier: server
+    spec:
+      containers:
+        - name: book-service
+          image: registry.gitlab.com/be-devops-tranning/book-service/server:prod
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          readinessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 20
+      imagePullSecrets:
+        - name: gitlab-key
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: book-service-svc
+spec:
+  ports:
+    - port: 8080
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    run: book-service
+  type: NodePort
