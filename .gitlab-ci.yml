@@ -1,6 +1,3 @@
-services:
-  - docker:dind
-
 stages:
   - image_build
   - deploy_live
@@ -13,7 +10,7 @@ variables:
 
 image_build:
   stage: image_build
-  image: thuongnn1997/docker:stable
+  image: docker:stable
   only:
     - master
   before_script:
