@@ -1,0 +1,9 @@
+stages:
+  - deploy_live
+
+deploy_live:
+  stage: deploy_live
+  only:
+    - master
+  script: kubectl get namespaces
+
