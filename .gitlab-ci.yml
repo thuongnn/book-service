@@ -1,10 +1,15 @@
 stages:
   - deploy_live
 
+variables:
+  KUBECONFIG: /etc/deploy/config
+
 deploy_live:
   stage: deploy_live
   image: dwdraju/gke-kubectl-docker
   only:
     - master
-  script: kubectl get namespaces
+  script:
+    - mkdir -p /etc/deploy
+    - echo ${kube_config} | base64 -d > ${KUBECONFIG}
 
