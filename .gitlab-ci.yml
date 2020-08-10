@@ -1,9 +1,10 @@
 stages:
-  - deploy_live
+  - deploy
 
-deploy_live:
-  stage: deploy_live
-  only:
-    - master
+configure production cluster:
+  stage: deploy
   script: kubectl get namespaces
+  environment:
+    name: production
+
 
