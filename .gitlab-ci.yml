@@ -10,7 +10,7 @@ variables:
 
 image_build:
   stage: image_build
-  image: docker:stable
+  image: docker:19.03.12
   only:
     - master
   before_script:
