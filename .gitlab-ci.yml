@@ -2,9 +2,7 @@ stages:
   - deploy_live
 
 deploy_live:
-  image:
-    name: dwdraju/gke-kubectl-docker
-    entrypoint: [""]
+  image: dwdraju/gke-kubectl-docker
   stage: deploy_live
   only:
     - master
