@@ -1,10 +1,10 @@
 stages:
-  - deploy
+  - deploy_live
 
-configure production cluster:
-  stage: deploy
+deploy_live:
+  stage: deploy_live
+  image: dwdraju/gke-kubectl-docker
+  only:
+    - master
   script: kubectl get namespaces
-  environment:
-    name: production
-
 
