@@ -1,19 +1,18 @@
 stages:
   - deploy_live
 
-variables:
-  KUBECONFIG: /etc/deploy/config
-
 deploy_live:
+  image:
+    name: kubectl:latest
+    entrypoint: [""]
   stage: deploy_live
-  image: dwdraju/gke-kubectl-docker
   only:
     - master
   script:
-    - echo $KUBE_NAMESPACE
-    - echo $KUBE_URL
-    - echo $KUBECONFIG
-    - cat $KUBECONFIG
-    - echo $KUBE_TOKEN
+    - kubectl config set-cluster k8s --server="$CLUSTER_ADDRESS"
+    - kubectl config set clusters.k8s.certificate-authority-data $CA_AUTH_DATA
+    - kubectl config set-credentials gitlab-service-account --token=$K8S_TOKEN
+    - kubectl config set-context default --cluster=k8s --user=gitlab-admin --namespace=default
     - kubectl get nodes
+    - kubectl config use-context default
 
