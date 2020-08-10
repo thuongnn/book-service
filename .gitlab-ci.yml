@@ -10,7 +10,6 @@ deploy_live:
   only:
     - master
   script:
-    - docker ps
     - echo ${kube_config} | base64 -d > ${KUBECONFIG}
     - kubectl get nodes
 
