@@ -9,9 +9,8 @@ deploy_live:
   only:
     - master
   script:
-    - kubectl config set-cluster k8s --server="$CLUSTER_ADDRESS"
-    - kubectl config set-cluster k8s --certificate-authority=$CA_AUTH_DATA
-    - kubectl config set-credentials gitlab-service-account --token=$K8S_TOKEN
+    - kubectl config set-cluster k8s --server="$CLUSTER_ADDRESS" --certificate-authority=$CA_AUTH_DATA
+    - kubectl config set-credentials gitlab-admin --token=$K8S_TOKEN
     - kubectl config set-context default --cluster=k8s --user=gitlab-admin --namespace=default
     - kubectl config use-context default
     - kubectl get nodes
