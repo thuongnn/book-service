@@ -10,6 +10,10 @@ deploy_live:
   only:
     - master
   script:
-    - echo ${kube_config} | base64 -d > ${KUBECONFIG}
+    - echo $KUBE_NAMESPACE
+    - echo $KUBE_URL
+    - echo $KUBECONFIG
+    - cat $KUBECONFIG
+    - echo $KUBE_TOKEN
     - kubectl get nodes
 
