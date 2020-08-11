@@ -34,5 +34,7 @@ deploy_live:
     - kubectl config set-credentials gitlab-admin --token=$K8S_TOKEN
     - kubectl config set-context default --cluster=k8s --user=gitlab-admin --namespace=default
     - kubectl config use-context default
-    - kubectl apply -f ./k8s/app/app-deployment.yaml
+    - ls
+    - cd ./k8s/app/
+    - kubectl apply -f .
 
