@@ -20,6 +20,7 @@ const (
 
 // Init configurations
 func Init() {
+	viper.AutomaticEnv()
 	viper.AddConfigPath("./config/app/")
 	viper.SetConfigFile(".env")
 	err := viper.ReadInConfig()
