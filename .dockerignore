@@ -4,6 +4,3 @@
 # build files
 ./main
 ./book-service
-
-# config file
-./k8s/
