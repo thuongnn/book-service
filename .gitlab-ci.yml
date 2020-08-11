@@ -23,7 +23,9 @@ variables:
 #    - docker push $SERVER_IMAGE:prod
 
 deploy_live:
-  image: bitnami/kubectl:latest
+  image:
+    name: bitnami/kubectl:latest
+    entrypoint: [""]
   stage: deploy_live
   only:
     - master
