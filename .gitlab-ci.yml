@@ -24,7 +24,7 @@ variables:
 
 deploy_live:
   image:
-    name: bitnami/kubectl:1.16.6
+    name: bitnami/kubectl:1.16
     entrypoint: [""]
   stage: deploy_live
   only:
