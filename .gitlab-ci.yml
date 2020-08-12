@@ -24,19 +24,17 @@ variables:
 
 deploy_live:
   image:
-    name: dwdraju/gke-kubectl-docker
+    name: bitnami/kubectl:latest
     entrypoint: [""]
   stage: deploy_live
   only:
     - master
   before_script:
-    - kubectl config set-cluster k8s --server="$CLUSTER_ADDRESS"
-    - kubectl config set-cluster k8s --certificate-authority=$CA_AUTH_DATA
-    - kubectl config set-credentials gitlab-admin --token=$K8S_TOKEN
-    - kubectl config set-context default --cluster=k8s --user=gitlab-admin --namespace=default
-    - kubectl config use-context default
-    - kubectl config view
-    - kubectl version
+    - config set-cluster k8s --server="$CLUSTER_ADDRESS"
+    - config set-cluster k8s --certificate-authority=$CA_AUTH_DATA
+    - config set-credentials gitlab-admin --token=$K8S_TOKEN
+    - config set-context default --cluster=k8s --user=gitlab-admin --namespace=default
+    - config use-context default
   script:
-    - kubectl apply -f ./k8s/app
+    - apply -f ./k8s/app
 
