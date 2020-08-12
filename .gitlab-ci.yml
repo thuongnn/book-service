@@ -1,5 +1,5 @@
 stages:
-#  - image_build
+  - image_build
   - deploy_live
 
 variables:
@@ -8,19 +8,19 @@ variables:
   DOCKER_DRIVER: overlay
   SERVER_IMAGE: registry.gitlab.com/be-devops-tranning/book-service/server
 
-#image_build:
-#  stage: image_build
-#  image: docker:stable
-#  only:
-#    - master
-#  before_script:
-#    - docker info
-#    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
-#  script:
-#    - docker pull $SERVER_IMAGE:latest || true
-#    - docker build --pull --cache-from $SERVER_CACHE_IMAGE:prod -t book-service-server .
-#    - docker tag book-service-server $SERVER_IMAGE:prod
-#    - docker push $SERVER_IMAGE:prod
+image_build:
+  stage: image_build
+  image: docker:stable
+  only:
+    - master
+  before_script:
+    - docker info
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+  script:
+    - docker pull $SERVER_IMAGE:latest || true
+    - docker build --pull --cache-from $SERVER_CACHE_IMAGE:prod -t book-service-server .
+    - docker tag book-service-server $SERVER_IMAGE:prod
+    - docker push $SERVER_IMAGE:prod
 
 deploy_live:
   image:

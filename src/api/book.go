@@ -9,7 +9,7 @@ import (
 	"strconv"
 )
 
-// LabelAPI handles requests for label management
+// BookAPI handles requests for book management
 type BookAPI struct {
 	book *models.Book
 	BaseAPI
