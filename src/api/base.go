@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/validation"
-	"github.com/prometheus/common/log"
 	"net/http"
 	"strconv"
 )
@@ -37,7 +36,7 @@ func (b *BaseAPI) ParamExistsInPath(key string) bool {
 func (b *BaseAPI) DecodeJSONReq(v interface{}) error {
 	err := json.Unmarshal(b.Ctx.Input.CopyBody(1<<32), v)
 	if err != nil {
-		log.Errorf("Error while decoding the json request, error: %v, %v",
+		fmt.Errorf("Error while decoding the json request, error: %v, %v",
 			err, string(b.Ctx.Input.CopyBody(1 << 32)[:]))
 		return errors.New("Invalid json request")
 	}

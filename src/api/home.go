@@ -6,6 +6,6 @@ type HomeAPI struct {
 
 // default home page
 func (h *HomeAPI) Get() {
-	h.TplName = "index.html"
-	_ = h.Render()
+	h.Data["json"] = "Welcome to book service !"
+	h.ServeJSON()
 }
