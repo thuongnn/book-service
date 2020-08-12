@@ -24,7 +24,7 @@ variables:
 
 deploy_live:
   image:
-    name: bitnami/kubectl:latest
+    name: lwolf/helm-kubectl-docker
     entrypoint: [""]
   stage: deploy_live
   only:
