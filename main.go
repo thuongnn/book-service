@@ -24,7 +24,7 @@ func main() {
 }
 
 func registerRoutes() {
-	beego.Router("/", &api.HomeAPI{}, "get:Get")
+	//beego.Router("/", &api.HomeAPI{}, "get:Get")
 	beego.Router("/:id([0-9]+", &api.BookAPI{}, "get:Get;delete:Delete;put:Put")
 	beego.Router("/", &api.BookAPI{}, "get:List;post:Post")
 }
