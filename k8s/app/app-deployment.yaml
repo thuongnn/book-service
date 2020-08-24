@@ -15,6 +15,8 @@ spec:
       labels:
         run: book-api
         tier: server
+      annotations:
+        'consul.hashicorp.com/connect-inject': 'true'
     spec:
       containers:
         - name: book-api

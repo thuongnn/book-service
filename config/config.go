@@ -4,6 +4,7 @@ import (
 	"book-service/src/models"
 	"fmt"
 	"github.com/spf13/viper"
+	"strconv"
 )
 
 const (
@@ -47,4 +48,10 @@ func Database() (*models.Database, error) {
 
 func GetAppPort() string {
 	return ":" + viper.GetString(ApplicationPort)
+}
+
+func GetBookServicePort() int {
+	port := viper.GetString(ApplicationPort)
+	p, _ := strconv.Atoi(port[1:len(port)])
+	return p
 }
