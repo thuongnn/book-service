@@ -52,6 +52,6 @@ func GetAppPort() string {
 
 func GetBookServicePort() int {
 	port := viper.GetString(ApplicationPort)
-	p, _ := strconv.Atoi(port[1:len(port)])
+	p, _ := strconv.Atoi(port)
 	return p
 }
