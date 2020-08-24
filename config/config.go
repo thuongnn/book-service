@@ -9,6 +9,7 @@ import (
 
 const (
 	ApplicationPort        = "port"
+	HostName               = "host_name"
 	PostGreSQLHOST         = "postgresql_host"
 	PostGreSQLPort         = "postgresql_port"
 	PostGreSQLUsername     = "postgresql_username"
@@ -54,4 +55,8 @@ func GetBookServicePort() int {
 	port := viper.GetString(ApplicationPort)
 	p, _ := strconv.Atoi(port)
 	return p
+}
+
+func GetUserHostName() string {
+	return viper.GetString(HostName)
 }

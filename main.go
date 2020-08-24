@@ -8,7 +8,6 @@ import (
 	"github.com/astaxie/beego"
 	consulapi "github.com/hashicorp/consul/api"
 	"log"
-	"os"
 )
 
 func main() {
@@ -60,9 +59,9 @@ func registerServiceWithConsul() {
 }
 
 func hostname() string {
-	hn, err := os.Hostname()
-	if err != nil {
-		log.Fatalln(err)
-	}
-	return hn
+	//hn, err := os.Hostname()
+	//if err != nil {
+	//	log.Fatalln(err)
+	//}
+	return config.GetUserHostName()
 }
