@@ -26,6 +26,8 @@ spec:
           env:
             - name: POSTGRESQL_HOST
               value: "postgres.default.svc.cluster.local"
+            - name: CONSUL_HTTP_ADDR
+              value: consul-ui
           ports:
             - containerPort: 8080
           readinessProbe:
